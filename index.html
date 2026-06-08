@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nivedh J | Data Analyst & ML Engineer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        base: '#03050A',
+                        cyan: '#38BDF8',
+                        indigo: '#818CF8',
+                        emerald: '#34D399',
+                        amber: '#FB923C',
+                        textMain: '#E2EAF5',
+                        textMuted: '#7A96AE',
+                        cardBg: 'rgba(255, 255, 255, 0.03)',
+                    },
+                    fontFamily: {
+                        display: ['Space Grotesk', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #03050A;
+            color: #E2EAF5;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            cursor: none;
+        }
+        
+        h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+
+        /* Custom Cursor */
+        .cursor-dot {
+            width: 8px; height: 8px;
+            background-color: #38BDF8;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s, height 0.2s;
+        }
+        .cursor-ring {
+            width: 32px; height: 32px;
+            border: 2px solid #818CF8;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: top 0.1s ease-out, left 0.1s ease-out, width 0.2s, height 0.2s;
+        }
+
+        /* Particle Background */
+        #particles-canvas {
+            position: fixed; top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -1; pointer-events: none;
+        }
+
+        /* Animations */
+        .fade-up {
+            opacity: 0; transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+        .pulse-dot {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.7); }
+            70% { box-shadow: 0 0 0 6px rgba(52, 211, 153, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0); }
+        }
+
+        .text-outline {
+            color: transparent;
+            -webkit-text-stroke: 1px #7A96AE;
+        }
+
+        /* Glassmorphism / Cards */
+        .glass-nav {
+            background: rgba(3, 5, 10, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .project-card {
+            background: var(--cardBg);
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.3s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: #818CF8;
+            box-shadow: 0 10px 30px -10px rgba(129, 140, 248, 0.3);
+        }
+
+        .avatar-glow {
+            background: conic-gradient(from 180deg at 50% 50%, #38BDF8 0deg, #818CF8 180deg, #38BDF8 360deg);
+            border-radius: 50%;
+            padding: 3px;
+        }
+
+        /* Ticker */
+        .ticker-wrap {
+            width: 100%; overflow: hidden;
+            background: rgba(255, 255, 255, 0.02);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding: 10px 0; white-space: nowrap;
+        }
+        .ticker-move {
+            display: inline-block;
+            animation: ticker 25s linear infinite;
+        }
+        @keyframes ticker {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-50%, 0, 0); }
+        }
+
+        /* Skill Bars */
+        .skill-bar-fill {
+            width: 0;
+            transition: width 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        /* Custom Table */
+        table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+        th, td { border-bottom: 1px solid rgba(255,255,255,0.1); padding: 8px; text-align: left; font-size: 0.875rem; }
+        th { color: #38BDF8; font-family: 'JetBrains Mono', monospace; }
+        .winner-row { background: rgba(52, 211, 153, 0.1); color: #34D399; font-weight: bold; }
+
+        /* Floating 3D Elements UI */
+        .float-element {
+            animation: float 6s ease-in-out infinite;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+        .float-element:hover .inner-3d {
+            transform: rotateX(10deg) rotateY(-10deg) scale(1.05);
+            border-color: #38BDF8;
+            box-shadow: 0 10px 40px -10px rgba(56, 189, 248, 0.3);
+        }
+        .inner-3d {
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(1deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        .data-clip {
+            position: absolute;
+            height: 100%;
+            border-radius: 9999px;
+            animation: slideClip 4s infinite ease-in-out alternate;
+        }
+        .delay-1 { animation-delay: -1.5s; }
+        .delay-2 { animation-delay: -3s; }
+
+        @keyframes slideClip {
+            0% { left: 0%; transform: translateX(0); width: 20%; }
+            100% { left: 100%; transform: translateX(-100%); width: 80%; }
+        }
+        
+        .bar-animate { animation: barGrow 2s infinite ease-in-out alternate; }
+        @keyframes barGrow {
+            0% { transform: scaleY(0.7); }
+            100% { transform: scaleY(1); }
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-cyan selection:text-base">
+
+    <canvas id="particles-canvas"></canvas>
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-xl font-display font-bold tracking-wider text-textMain hover:text-cyan transition-colors">NJ<span class="text-cyan">.</span></a>
+            <div class="hidden md:flex space-x-8 items-center text-sm font-mono text-textMuted">
+                <a href="#about" class="hover:text-cyan transition-colors">01. About</a>
+                <a href="#skills" class="hover:text-cyan transition-colors">02. Skills</a>
+                <a href="#projects" class="hover:text-cyan transition-colors">03. Projects</a>
+                <a href="#education" class="hover:text-cyan transition-colors">04. Education</a>
+                <a href="https://wa.me/919895806877?text=Hi%20Nivedh%2C%20I%20came%20across%20your%20portfolio%20and%20would%20like%20to%20connect!" target="_blank" class="border border-cyan text-cyan px-4 py-2 rounded hover:bg-cyan hover:text-base transition-all">hire_me()</a>
+            </div>
+            <button class="md:hidden text-textMain focus:outline-none">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+    </nav>
+
+    <header id="hero" class="min-h-screen flex items-center justify-center pt-24 pb-12 px-6 relative">
+        <div class="max-w-7xl w-full grid lg:grid-cols-12 gap-12 items-center fade-up z-10">
+            
+            <div class="lg:col-span-7 text-center lg:text-left flex flex-col items-center lg:items-start">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald/10 border border-emerald/20 text-emerald text-sm font-mono mb-6">
+                    <span class="w-2 h-2 rounded-full bg-emerald pulse-dot"></span>
+                    Open to work · Kerala, India
+                </div>
+                
+                <h1 class="text-6xl md:text-8xl font-display font-bold tracking-tight mb-2">NIVEDH J</h1>
+                <h2 class="text-3xl md:text-4xl font-display font-bold text-outline mb-6">DATA ANALYST & ML ENGINEER</h2>
+                
+                <div class="text-xl md:text-2xl font-mono text-cyan mb-8 h-8">
+                    > <span id="typed-text"></span>
+                </div>
+
+                <p class="max-w-xl text-textMuted text-lg mb-10 border-l-2 border-indigo pl-4 italic mx-auto lg:mx-0">
+                    "I build end-to-end data pipelines — from messy CSV to trained model to polished dashboard. I care about the 'why' behind every insight, not just the chart."
+                </p>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 w-full max-w-2xl mb-10 border-t border-b border-white/5 py-6">
+                    <div><div class="text-xl md:text-2xl font-display font-bold text-textMain">20K+</div><div class="text-[10px] md:text-xs text-textMuted font-mono">Rows Processed</div></div>
+                    <div><div class="text-xl md:text-2xl font-display font-bold text-textMain">$47,873</div><div class="text-[10px] md:text-xs text-textMuted font-mono">Best RMSE</div></div>
+                    <div><div class="text-xl md:text-2xl font-display font-bold text-textMain">7+</div><div class="text-[10px] md:text-xs text-textMuted font-mono">Projects Built</div></div>
+                    <div><div class="text-xl md:text-2xl font-display font-bold text-textMain">5</div><div class="text-[10px] md:text-xs text-textMuted font-mono">Models Compared</div></div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-4 font-mono text-sm w-full sm:w-auto">
+                    <a href="#projects" class="bg-cyan text-base px-8 py-3 rounded hover:bg-cyan/80 transition-colors font-bold text-center">See My Work</a>
+                    <a href="https://github.com/nivedh-j" target="_blank" class="border border-textMuted text-textMain px-8 py-3 rounded hover:border-textMain transition-colors text-center"><i class="fab fa-github mr-2"></i>GitHub ↗</a>
+                    <a href="https://www.linkedin.com/in/nivedhj/" target="_blank" class="border border-textMuted text-textMain px-8 py-3 rounded hover:border-textMain transition-colors text-center"><i class="fab fa-linkedin mr-2"></i>LinkedIn ↗</a>
+                </div>
+            </div>
+
+            <div class="lg:col-span-5 hidden lg:block float-element z-10 w-full max-w-md ml-auto">
+                <div class="inner-3d rounded-2xl p-8 border border-white/10 relative overflow-hidden bg-[rgba(15,20,30,0.6)] shadow-2xl">
+                    <div class="absolute top-[-20%] right-[-10%] w-48 h-48 bg-cyan rounded-full mix-blend-screen filter blur-[80px] opacity-30"></div>
+                    <div class="absolute bottom-[-10%] left-[-20%] w-48 h-48 bg-indigo rounded-full mix-blend-screen filter blur-[80px] opacity-20"></div>
+                    
+                    <div class="flex justify-between items-center mb-8 border-b border-white/10 pb-4 relative z-10">
+                        <div class="text-xs font-mono tracking-widest text-textMuted">PIPELINE_EXECUTION</div>
+                        <div class="text-emerald text-[10px] font-mono px-2 py-1 rounded border border-emerald/20 bg-emerald/10 flex items-center gap-2 shadow-[0_0_10px_rgba(52,211,153,0.2)]">
+                            <span class="w-1.5 h-1.5 rounded-full bg-emerald pulse-dot"></span> RUNNING
+                        </div>
+                    </div>
+
+                    <div class="space-y-6 relative z-10">
+                        <div>
+                            <div class="flex justify-between text-xs text-textMuted mb-2 font-mono">
+                                <span>[1] Preprocessing</span><span class="text-indigo">100%</span>
+                            </div>
+                            <div class="h-1.5 rounded-full bg-white/5 relative overflow-hidden">
+                                <div class="absolute top-0 left-0 h-full w-full bg-indigo/50"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs text-textMuted mb-2 font-mono">
+                                <span>[2] Feature Eng.</span><span class="text-cyan">Processing...</span>
+                            </div>
+                            <div class="h-1.5 rounded-full bg-white/5 relative overflow-hidden">
+                                <div class="data-clip bg-gradient-to-r from-cyan to-indigo top-0 delay-1 shadow-[0_0_10px_rgba(56,189,248,0.5)]"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs text-textMuted mb-2 font-mono">
+                                <span>[3] Model Training</span><span class="text-emerald">Epoch 4/10</span>
+                            </div>
+                            <div class="h-1.5 rounded-full bg-white/5 relative overflow-hidden">
+                                <div class="data-clip bg-gradient-to-r from-emerald to-cyan top-0 delay-2 shadow-[0_0_10px_rgba(52,211,153,0.5)]"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 pt-6 border-t border-white/10 relative z-10">
+                        <div class="text-[10px] font-mono text-textMuted mb-3 flex justify-between">
+                            <span>ACCURACY_METRIC</span>
+                            <span class="text-cyan">+12.4%</span>
+                        </div>
+                        <div class="flex items-end gap-1.5 h-20 origin-bottom">
+                            <div class="w-1/6 bg-cyan/20 h-[30%] rounded-t bar-animate" style="animation-delay: 0.0s"></div>
+                            <div class="w-1/6 bg-cyan/40 h-[45%] rounded-t bar-animate" style="animation-delay: 0.2s"></div>
+                            <div class="w-1/6 bg-cyan/60 h-[35%] rounded-t bar-animate" style="animation-delay: 0.4s"></div>
+                            <div class="w-1/6 bg-cyan/80 h-[65%] rounded-t bar-animate" style="animation-delay: 0.6s"></div>
+                            <div class="w-1/6 bg-cyan h-[85%] rounded-t bar-animate" style="animation-delay: 0.8s"></div>
+                            <div class="w-1/6 bg-emerald h-[100%] rounded-t shadow-[0_0_15px_rgba(52,211,153,0.4)]"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </header>
+
+    <section class="ticker-wrap">
+        <div class="ticker-move text-textMuted font-mono text-sm tracking-widest">
+            PYTHON // SQL // PANDAS // NUMPY // MATPLOTLIB // SEABORN // PLOTLY // POWER BI // SCIKIT-LEARN // STREAMLIT // HTML // CSS // 
+            PYTHON // SQL // PANDAS // NUMPY // MATPLOTLIB // SEABORN // PLOTLY // POWER BI // SCIKIT-LEARN // STREAMLIT // HTML // CSS // 
+        </div>
+    </section>
+
+    <section id="about" class="py-24 px-6 max-w-5xl mx-auto">
+        <div class="flex items-center gap-4 mb-12 fade-up">
+            <h2 class="text-3xl font-display font-bold"><span class="text-cyan font-mono text-xl mr-2">01.</span>Turning data into decisions</h2>
+            <div class="h-px bg-white/10 flex-grow"></div>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-12 items-start">
+            <div class="col-span-1 flex flex-col items-center fade-up">
+                <div class="avatar-glow w-48 h-48 mb-6 relative">
+                    <div class="w-full h-full bg-base rounded-full flex items-center justify-center border-4 border-base">
+                        <span class="text-5xl font-display font-bold text-textMain">NJ</span>
+                    </div>
+                </div>
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald/10 text-emerald text-xs font-mono">
+                    <span class="w-2 h-2 rounded-full bg-emerald pulse-dot"></span> Available for Opportunities
+                </div>
+            </div>
+            
+            <div class="col-span-2 space-y-6 text-textMuted fade-up">
+                <p>I am currently studying Data Science, building upon my computer applications foundation from Mahatma Gandhi University, Palakkad, Kerala. I spend my time cleaning messy datasets, building ML pipelines, and creating dashboards that make insights impossible to ignore. Every project follows one rule: understand the problem first, then let the data speak.</p>
+                <p>My approach is rigorous — stratified splits, cross-validation, confidence intervals. I don't just run a model; I understand why it works.</p>
+                
+                <div class="flex flex-wrap gap-2 pt-4">
+                    <span class="px-3 py-1 bg-white/5 border border-white/10 rounded font-mono text-xs text-indigo">Python</span>
+                    <span class="px-3 py-1 bg-white/5 border border-white/10 rounded font-mono text-xs text-indigo">SQL / MySQL</span>
+                    <span class="px-3 py-1 bg-white/5 border border-white/10 rounded font-mono text-xs text-indigo">Pandas & NumPy</span>
+                    <span class="px-3 py-1 bg-white/5 border border-white/10 rounded font-mono text-xs text-indigo">Power BI</span>
+                    <span class="px-3 py-1 bg-white/5 border border-white/10 rounded font-mono text-xs text-indigo">Scikit-learn</span>
+                    <span class="px-3 py-1 bg-white/5 border border-white/10 rounded font-mono text-xs text-indigo">Feature Engineering</span>
+                    <span class="px-3 py-1 bg-white/5 border border-white/10 rounded font-mono text-xs text-indigo">EDA</span>
+                </div>
+
+                <div class="mt-8 p-4 border border-cyan/20 bg-cyan/5 rounded-lg border-l-4 border-l-cyan">
+                    <p class="text-sm font-mono text-textMain"><span class="text-cyan">🔭 Currently Exploring:</span> Advanced ensemble methods, model deployment as Flask APIs, and deep learning fundamentals (PyTorch).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="py-24 px-6 max-w-5xl mx-auto">
+        <div class="flex items-center gap-4 mb-12 fade-up">
+            <h2 class="text-3xl font-display font-bold"><span class="text-cyan font-mono text-xl mr-2">02.</span>Technical Arsenal</h2>
+            <div class="h-px bg-white/10 flex-grow"></div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-12">
+            <div class="space-y-8 fade-up">
+                <div>
+                    <h3 class="text-xl font-display mb-4 text-textMain">Languages & Tools</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between text-sm font-mono mb-1"><span class="text-cyan">Python</span><span>85%</span></div>
+                            <div class="w-full bg-white/10 h-1 rounded"><div class="skill-bar-fill bg-cyan h-1 rounded" data-width="85%"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm font-mono mb-1"><span class="text-cyan">SQL (MySQL)</span><span>75%</span></div>
+                            <div class="w-full bg-white/10 h-1 rounded"><div class="skill-bar-fill bg-cyan h-1 rounded" data-width="75%"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm font-mono mb-1"><span class="text-cyan">Power BI</span><span>78%</span></div>
+                            <div class="w-full bg-white/10 h-1 rounded"><div class="skill-bar-fill bg-cyan h-1 rounded" data-width="78%"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm font-mono mb-1"><span class="text-cyan">HTML / CSS</span><span>70%</span></div>
+                            <div class="w-full bg-white/10 h-1 rounded"><div class="skill-bar-fill bg-cyan h-1 rounded" data-width="70%"></div></div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-xl font-display mb-4 text-textMain">Data Analysis & ML</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between text-sm font-mono mb-1"><span class="text-indigo">Pandas & NumPy</span><span>84%</span></div>
+                            <div class="w-full bg-white/10 h-1 rounded"><div class="skill-bar-fill bg-indigo h-1 rounded" data-width="84%"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm font-mono mb-1"><span class="text-indigo">Scikit-learn</span><span>80%</span></div>
+                            <div class="w-full bg-white/10 h-1 rounded"><div class="skill-bar-fill bg-indigo h-1 rounded" data-width="80%"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm font-mono mb-1"><span class="text-indigo">Matplotlib / Seaborn</span><span>78%</span></div>
+                            <div class="w-full bg-white/10 h-1 rounded"><div class="skill-bar-fill bg-indigo h-1 rounded" data-width="78%"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="fade-up">
+                <h3 class="text-xl font-display mb-4 text-textMain">Core Concepts</h3>
+                <div class="flex flex-wrap gap-3">
+                    <span class="px-4 py-2 bg-white/5 border border-white/10 rounded-full font-mono text-sm hover:border-cyan transition-colors">Classification</span>
+                    <span class="px-4 py-2 bg-white/5 border border-white/10 rounded-full font-mono text-sm hover:border-cyan transition-colors">Regression</span>
+                    <span class="px-4 py-2 bg-white/5 border border-white/10 rounded-full font-mono text-sm hover:border-cyan transition-colors">Feature Engineering</span>
+                    <span class="px-4 py-2 bg-white/5 border border-white/10 rounded-full font-mono text-sm hover:border-cyan transition-colors">GridSearchCV</span>
+                    <span class="px-4 py-2 bg-white/5 border border-white/10 rounded-full font-mono text-sm hover:border-cyan transition-colors">Cross-Validation</span>
+                    <span class="px-4 py-2 bg-white/5 border border-white/10 rounded-full font-mono text-sm hover:border-cyan transition-colors">SMOTE</span>
+                    <span class="px-4 py-2 bg-white/5 border border-white/10 rounded-full font-mono text-sm hover:border-cyan transition-colors">EDA</span>
+                    <span class="px-4 py-2 bg-white/5 border border-white/10 rounded-full font-mono text-sm hover:border-cyan transition-colors">Confusion Matrix</span>
+                    <span class="px-4 py-2 bg-white/5 border border-white/10 rounded-full font-mono text-sm hover:border-cyan transition-colors">AUC-ROC</span>
+                    <span class="px-4 py-2 bg-white/5 border border-white/10 rounded-full font-mono text-sm hover:border-cyan transition-colors">DAX</span>
+                    <span class="px-4 py-2 bg-white/5 border border-white/10 rounded-full font-mono text-sm hover:border-cyan transition-colors">BeautifulSoup</span>
+                    <span class="px-4 py-2 bg-white/5 border border-white/10 rounded-full font-mono text-sm hover:border-cyan transition-colors">Stratified Split</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="py-24 px-6 max-w-6xl mx-auto">
+        <div class="flex items-center gap-4 mb-12 fade-up">
+            <h2 class="text-3xl font-display font-bold"><span class="text-cyan font-mono text-xl mr-2">03.</span>Featured Work</h2>
+            <div class="h-px bg-white/10 flex-grow"></div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+            
+            <div class="project-card rounded-xl p-6 fade-up flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="text-amber text-xs font-mono mb-2"><i class="fas fa-star mr-1"></i>Machine Learning · Regression</div>
+                        <a href="https://github.com/nivedh-j/california-house-price-prediction" target="_blank" class="text-textMuted hover:text-cyan text-xl"><i class="fab fa-github"></i></a>
+                    </div>
+                    <h3 class="text-2xl font-display font-bold mb-2">California House Price Prediction</h3>
+                    
+                    <div class="w-full h-44 rounded-lg overflow-hidden border border-white/10 mb-4 bg-white/5 relative group cursor-pointer" onclick="window.open('https://github.com/nivedh-j/california-house-price-prediction', '_blank')">
+                        <img src="file:///D:/Data Science/Screenshots/Project/California House Prediction.png" alt="California House Price Prediction Dashboard" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-80 group-hover:opacity-100">
+                        <div class="absolute inset-0 bg-gradient-to-t from-base via-transparent to-transparent opacity-60 pointer-events-none"></div>
+                    </div>
+
+                    <p class="text-textMuted text-sm mb-4">End-to-end regression pipeline predicting median house prices across 20,640 records. Handled data cleaning, feature engineering, and model tuning.</p>
+                    <div class="mb-4 bg-base p-3 rounded border border-white/5">
+                        <table>
+                            <tr><th>Model</th><th>RMSE</th><th>Verdict</th></tr>
+                            <tr><td>Linear Reg</td><td>69,104</td><td>Underfit</td></tr>
+                            <tr><td>Decision Tree</td><td>71,629</td><td>Overfit</td></tr>
+                            <tr class="winner-row"><td>Random Forest</td><td>47,873</td><td>Best ✓</td></tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="text-xs font-mono text-textMuted mt-auto">
+                    <span class="text-cyan">Stack:</span> Scikit-learn, Pandas, GridSearchCV
+                </div>
+            </div>
+
+            <div class="project-card rounded-xl p-6 fade-up border-emerald/30 relative overflow-hidden flex flex-col justify-between">
+                <div class="absolute top-0 right-0 bg-emerald/10 text-emerald text-xs font-mono px-3 py-1 rounded-bl-lg border-b border-l border-emerald/20 flex items-center gap-2 z-10">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald pulse-dot"></span> LIVE APP
+                </div>
+                <div>
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="text-amber text-xs font-mono mt-2"><i class="fas fa-star mr-1"></i>Machine Learning · Classification</div>
+                        <a href="https://github.com/nivedh-j/cancer-risk-prediction" target="_blank" class="text-textMuted hover:text-cyan text-xl"><i class="fab fa-github"></i></a>
+                    </div>
+                    <h3 class="text-2xl font-display font-bold mb-2">Cancer Risk Prediction</h3>
+                    
+                    <div class="w-full h-44 rounded-lg overflow-hidden border border-white/10 mb-4 bg-white/5 relative group cursor-pointer" onclick="window.open('https://github.com/nivedh-j/cancer-risk-prediction', '_blank')">
+                        <img src="file:///D:/Data Science/Screenshots/Project/Cancer Prediction.png" alt="Cancer Risk Prediction Web App Interface" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-80 group-hover:opacity-100">
+                        <div class="absolute inset-0 bg-gradient-to-t from-base via-transparent to-transparent opacity-60 pointer-events-none"></div>
+                    </div>
+
+                    <p class="text-textMuted text-sm mb-4">Binary classification model deployed via Streamlit. Compared LR, GNB, KNN, and RF. KNN outperformed all models on AUC after correct problem scoping.</p>
+                    <div class="mb-4 pl-3 border-l-2 border-indigo text-sm text-textMuted italic">
+                        Pipeline: Cleaning → Feature Eng → Stratified Split → AUC Comparison → Streamlit Deploy
+                    </div>
+                </div>
+                <div class="flex gap-4 mt-auto pt-4">
+                    <a href="https://cancer-risk-prediction-nivedhj.streamlit.app/" target="_blank" class="text-emerald hover:text-white text-sm font-mono"><i class="fas fa-external-link-alt mr-1"></i>View Live App</a>
+                    <a href="https://github.com/nivedh-j/cancer-risk-prediction" target="_blank" class="text-textMuted hover:text-white text-sm font-mono"><i class="fab fa-github mr-1"></i>Code</a>
+                </div>
+            </div>
+
+            <div class="project-card rounded-xl p-6 fade-up flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="text-amber text-xs font-mono mb-2"><i class="fas fa-star mr-1"></i>Machine Learning · Multi-class</div>
+                        <a href="https://github.com/nivedh-j/drug-classification-ml" target="_blank" class="text-textMuted hover:text-cyan text-xl"><i class="fab fa-github"></i></a>
+                    </div>
+                    <h3 class="text-2xl font-display font-bold mb-2">Drug Classification Pipeline</h3>
+                    
+                    <div class="w-full h-44 rounded-lg overflow-hidden border border-white/10 mb-4 bg-white/5 relative group cursor-pointer" onclick="window.open('https://github.com/nivedh-j/drug-classification-ml', '_blank')">
+                        <img src="file:///D:/Data Science/Screenshots/Project/Drug Classification.png" alt="Drug Classification Distribution Visual" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-80 group-hover:opacity-100">
+                        <div class="absolute inset-0 bg-gradient-to-t from-base via-transparent to-transparent opacity-60 pointer-events-none"></div>
+                    </div>
+
+                    <p class="text-textMuted text-sm mb-4">Multi-class classifier mapping patient features to 5 drug types. Utilized SMOTE to handle class imbalance and evaluated 5 models using confusion matrices.</p>
+                </div>
+                <div class="text-xs font-mono text-textMuted mb-4">
+                    <span class="text-cyan">Stack:</span> Scikit-learn, SMOTE, Pandas, Seaborn
+                </div>
+                <a href="https://github.com/nivedh-j/drug-classification-ml" target="_blank" class="text-textMuted hover:text-white text-sm font-mono mt-auto"><i class="fab fa-github mr-1"></i>View Repository</a>
+            </div>
+
+            <div class="project-card rounded-xl p-6 fade-up flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="text-amber text-xs font-mono mb-2"><i class="fas fa-star mr-1"></i>Business Intelligence</div>
+                        <a href="https://github.com/nivedh-j/Sales-Analytics-Power-BI-Dashboard" target="_blank" class="text-textMuted hover:text-cyan text-xl"><i class="fab fa-github"></i></a>
+                    </div>
+                    <h3 class="text-2xl font-display font-bold mb-2">Sales Analytics Dashboard</h3>
+
+                    <div class="w-full h-44 rounded-lg overflow-hidden border border-white/10 mb-4 bg-white/5 relative group cursor-pointer" onclick="window.open('https://github.com/nivedh-j/Sales-Analytics-Power-BI-Dashboard', '_blank')">
+                        <img src="file:///D:/Data Science/Screenshots/Project/Sales Dashboard.png" alt="Power BI Sales Performance Report View" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-80 group-hover:opacity-100">
+                        <div class="absolute inset-0 bg-gradient-to-t from-base via-transparent to-transparent opacity-60 pointer-events-none"></div>
+                    </div>
+
+                    <p class="text-textMuted text-sm mb-4">3-page interactive Power BI report with dynamic slicers, custom DAX measures, and drill-through. Exposed a 34% revenue gap in Q3 hidden in raw tables.</p>
+                </div>
+                <div class="text-xs font-mono text-textMuted mb-4">
+                    <span class="text-cyan">Stack:</span> Power BI, DAX, Excel
+                </div>
+                <a href="https://github.com/nivedh-j/Sales-Analytics-Power-BI-Dashboard" target="_blank" class="text-textMuted hover:text-white text-sm font-mono mt-auto"><i class="fab fa-github mr-1"></i>View Repository</a>
+            </div>
+
+            <div class="col-span-1 md:col-span-2 grid md:grid-cols-3 gap-6 mt-4">
+                <a href="https://github.com/nivedh-j/imdb-top-1000-analysis" target="_blank" class="project-card block rounded-xl p-5 fade-up opacity-80 hover:opacity-100 group">
+                    <div class="flex justify-between items-start mb-1">
+                        <h4 class="text-lg font-display font-bold">IMDB Top 1000 EDA</h4>
+                        <i class="fab fa-github text-textMuted group-hover:text-cyan transition-colors"></i>
+                    </div>
+                    <p class="text-textMuted text-xs mb-3">Found Action grossed 3x more than Drama, despite Drama making up 58% of top films.</p>
+                    <div class="text-[10px] font-mono text-cyan">Pandas · Seaborn · Plotly</div>
+                </a>
+
+                <a href="https://github.com/nivedh-j/Netflix-eda" target="_blank" class="project-card block rounded-xl p-5 fade-up opacity-80 hover:opacity-100 group">
+                    <div class="flex justify-between items-start mb-1">
+                        <h4 class="text-lg font-display font-bold">Netflix Library EDA</h4>
+                        <i class="fab fa-github text-textMuted group-hover:text-cyan transition-colors"></i>
+                    </div>
+                    <p class="text-textMuted text-xs mb-3">Analyzed 8.8K+ titles to track genre shifts and release cadence across the catalogue.</p>
+                    <div class="text-[10px] font-mono text-cyan">Python · Pandas · Plotly</div>
+                </a>
+
+                <a href="https://github.com/nivedh-j/Amazon-Mobile-Scraping" target="_blank" class="project-card block rounded-xl p-5 fade-up opacity-80 hover:opacity-100 group">
+                    <div class="flex justify-between items-start mb-1">
+                        <h4 class="text-lg font-display font-bold">Amazon Mobile Scraper</h4>
+                        <i class="fab fa-github text-textMuted group-hover:text-cyan transition-colors"></i>
+                    </div>
+                    <p class="text-textMuted text-xs mb-3">Automated scraping pipeline with rate limiting generating clean CSVs for price analysis.</p>
+                    <div class="text-[10px] font-mono text-cyan">BeautifulSoup · Requests</div>
+                </a>
+            </div>
+
+            <div class="col-span-1 md:col-span-2 mt-4 pt-6 border-t border-white/5 fade-up">
+                <h4 class="text-sm font-mono text-textMuted mb-4 uppercase tracking-wider">Web Dev / Early Projects</h4>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="https://github.com/nivedh-j/fuel_delivery" target="_blank" class="flex-1 bg-white/5 p-4 rounded-lg hover:bg-white/10 transition-colors group">
+                        <div class="flex justify-between items-center mb-1">
+                            <div class="font-display font-bold text-textMain">Fuel Drop</div>
+                            <i class="fab fa-github text-textMuted group-hover:text-cyan transition-colors"></i>
+                        </div>
+                        <div class="text-xs text-textMuted">On-demand delivery platform backend. HTML/CSS/Python.</div>
+                    </a>
+                    <a href="https://github.com/nivedh-j/Legal-Guru" target="_blank" class="flex-1 bg-white/5 p-4 rounded-lg hover:bg-white/10 transition-colors group">
+                        <div class="flex justify-between items-center mb-1">
+                            <div class="font-display font-bold text-textMain">Legal Guru</div>
+                            <i class="fab fa-github text-textMuted group-hover:text-cyan transition-colors"></i>
+                        </div>
+                        <div class="text-xs text-textMuted">Legal services booking platform. HTML/CSS/SQLite3.</div>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="education" class="py-24 px-6 max-w-4xl mx-auto">
+        <div class="flex items-center gap-4 mb-12 fade-up">
+            <h2 class="text-3xl font-display font-bold"><span class="text-cyan font-mono text-xl mr-2">04.</span>Education & Learning</h2>
+            <div class="h-px bg-white/10 flex-grow"></div>
+        </div>
+
+        <div class="space-y-12 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-white/10 before:to-transparent">
+            
+            <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active fade-up">
+                <div class="flex items-center justify-center w-10 h-10 rounded-full border border-cyan bg-base text-cyan shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
+                    <i class="fas fa-laptop-code"></i>
+                </div>
+                <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 rounded-xl border border-white/5 bg-cardBg">
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="font-display font-bold text-xl text-textMain">Data Science & ML</h3>
+                        <span class="font-mono text-xs text-cyan">2024 - Present</span>
+                    </div>
+                    <div class="text-sm text-textMuted mb-3">Self-Directed · Project-First Approach</div>
+                    <p class="text-sm text-textMuted mb-2">Applying concepts directly to real datasets using Aurélien Géron's "Hands-On ML" and Kaggle.</p>
+                    <ul class="text-xs text-textMuted list-disc pl-4 space-y-1 marker:text-cyan">
+                        <li>End-to-end ML pipelines & Feature engineering</li>
+                        <li>GridSearchCV tuning & Cross-validation</li>
+                        <li>Power BI dashboards & EDA</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group fade-up">
+                <div class="flex items-center justify-center w-10 h-10 rounded-full border border-white/20 bg-base text-textMuted shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
+                    <i class="fas fa-university"></i>
+                </div>
+                <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 rounded-xl border border-white/5 bg-cardBg">
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="font-display font-bold text-xl text-textMain">Bachelor of Computer Applications</h3>
+                        <span class="font-mono text-xs text-textMuted">2021 - 2024</span>
+                    </div>
+                    <div class="text-sm text-textMuted mb-3">Mahatma Gandhi University, Palakkad</div>
+                    <p class="text-sm text-textMuted">Specialisation in Data Science. Built foundation in Python programming, MySQL, Data Structures, Algorithms, and Web Technologies.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="contact" class="py-32 px-6 max-w-3xl mx-auto text-center fade-up">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald/10 border border-emerald/20 text-emerald text-sm font-mono mb-8">
+            <span class="w-2 h-2 rounded-full bg-emerald pulse-dot"></span> Currently available for new opportunities
+        </div>
+        
+        <h2 class="text-5xl font-display font-bold mb-6">Let's Work Together</h2>
+        
+        <p class="text-textMuted text-lg mb-10">
+            Open to Data Analyst roles, Data Science internships, freelance analytics projects, and collaborations. I bring curiosity, clean code, and clear communication.
+        </p>
+
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+            <a href="https://wa.me/919895806877?text=Hi%20Nivedh%2C%20I%20came%20across%20your%20portfolio%20and%20would%20like%20to%20connect!" target="_blank" class="bg-cyan text-base font-bold px-8 py-4 rounded hover:bg-cyan/80 transition-transform hover:-translate-y-1 flex items-center justify-center">
+                <i class="fab fa-whatsapp text-xl mr-2"></i> WhatsApp Me
+            </a>
+            <a href="https://mail.google.com/mail/?view=cm&to=nivedh444@gmail.com" target="_blank" class="border border-white/20 text-textMain px-8 py-4 rounded hover:border-cyan hover:text-cyan transition-all flex items-center justify-center">
+                <i class="fas fa-envelope mr-2"></i> Email
+            </a>
+            <div class="flex gap-4 justify-center sm:justify-start">
+                <a href="https://github.com/nivedh-j" target="_blank" class="border border-white/20 text-textMain w-14 h-14 rounded flex items-center justify-center hover:border-cyan hover:text-cyan transition-all text-xl"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/nivedhj/" target="_blank" class="border border-white/20 text-textMain w-14 h-14 rounded flex items-center justify-center hover:border-cyan hover:text-cyan transition-all text-xl"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-8 text-center border-t border-white/5 font-mono text-sm text-textMuted">
+        <p>Built by Nivedh J · Data Analyst & ML Engineer · Kerala, India</p>
+    </footer>
+
+    <button id="back-to-top" class="fixed bottom-8 right-8 w-12 h-12 bg-white/5 border border-white/10 rounded-full flex items-center justify-center text-textMain opacity-0 pointer-events-none transition-all duration-300 hover:bg-cyan hover:text-base z-40">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        const dot = document.querySelector('.cursor-dot');
+        const ring = document.querySelector('.cursor-ring');
+        
+        document.addEventListener('mousemove', (e) => {
+            dot.style.left = e.clientX + 'px';
+            dot.style.top = e.clientY + 'px';
+            ring.style.left = e.clientX + 'px';
+            ring.style.top = e.clientY + 'px';
+        });
+
+        const links = document.querySelectorAll('a, button');
+        links.forEach(link => {
+            link.addEventListener('mouseenter', () => {
+                dot.style.width = '12px';
+                dot.style.height = '12px';
+                ring.style.width = '48px';
+                ring.style.height = '48px';
+                ring.style.borderColor = '#38BDF8';
+            });
+            link.addEventListener('mouseleave', () => {
+                dot.style.width = '8px';
+                dot.style.height = '8px';
+                ring.style.width = '32px';
+                ring.style.height = '32px';
+                ring.style.borderColor = '#818CF8';
+            });
+        });
+
+        new Typed('#typed-text', {
+            strings: ['Data Analyst', 'End-to-End ML Builder', 'EDA Specialist', 'Power BI Developer', 'Python & Scikit-learn'],
+            typeSpeed: 50,
+            backSpeed: 30,
+            backDelay: 2000,
+            loop: true,
+            cursorChar: '_'
+        });
+
+        const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    const skillBars = entry.target.querySelectorAll('.skill-bar-fill');
+                    skillBars.forEach(bar => {
+                        bar.style.width = bar.getAttribute('data-width');
+                    });
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+        const backToTop = document.getElementById('back-to-top');
+        const nav = document.querySelector('nav');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.remove('opacity-0', 'pointer-events-none');
+                backToTop.classList.add('opacity-100', 'cursor-pointer');
+            } else {
+                backToTop.classList.add('opacity-0', 'pointer-events-none');
+                backToTop.classList.remove('opacity-100', 'cursor-pointer');
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+        let width, height, particles;
+
+        function initParticles() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            particles = [];
+            for (let i = 0; i < 50; i++) {
+                particles.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    vx: (Math.random() - 0.5) * 0.5,
+                    vy: (Math.random() - 0.5) * 0.5,
+                    radius: Math.random() * 1.5
+                });
+            }
+        }
+
+        function drawParticles() {
+            ctx.clearRect(0, 0, width, height);
+            ctx.fillStyle = 'rgba(56, 189, 248, 0.3)';
+            ctx.strokeStyle = 'rgba(129, 140, 248, 0.1)';
+
+            particles.forEach(p => {
+                p.x += p.vx;
+                p.y += p.vy;
+
+                if (p.x < 0 || p.x > width) p.vx *= -1;
+                if (p.y < 0 || p.y > height) p.vy *= -1;
+
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctx.fill();
+            });
+
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < 150) {
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(drawParticles);
+        }
+
+        window.addEventListener('resize', initParticles);
+        initParticles();
+        drawParticles();
+    </script>
+</body>
+</html>
