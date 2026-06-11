@@ -68,6 +68,16 @@
             transition: top 0.1s ease-out, left 0.1s ease-out, width 0.2s, height 0.2s;
         }
 
+        /* Disable Custom Cursor on Touch Devices / Mobile */
+        @media (max-width: 1024px), (hover: none) and (pointer: coarse) {
+            .cursor-dot, .cursor-ring {
+                display: none !important;
+            }
+            body {
+                cursor: auto;
+            }
+        }
+
         /* Particle Background */
         #particles-canvas {
             position: fixed; top: 0; left: 0;
@@ -226,7 +236,7 @@
                 </div>
             </div>
 
-            <div class="lg:col-span-5 hidden lg:block float-element z-10 w-full max-w-md ml-auto">
+            <div class="lg:col-span-5 w-full max-w-md mx-auto lg:ml-auto mt-12 lg:mt-0 float-element z-10">
                 <div class="inner-3d rounded-2xl p-6 border border-white/10 relative overflow-hidden bg-[rgba(15,20,30,0.6)] shadow-2xl">
                     <div class="absolute top-[-20%] right-[-10%] w-48 h-48 bg-cyan rounded-full mix-blend-screen filter blur-[80px] opacity-30"></div>
                     
@@ -249,8 +259,8 @@
                             <div class="text-[11px] text-emerald font-bold mb-1">🧬 Cancer Risk Classification</div>
                             <table class="bg-base/40 rounded overflow-hidden">
                                 <tr><th>Algorithm</th><th>AUC-ROC</th><th>Status</th></tr>
-                                <tr class="winner-row"><td>KNN</td><td>Highest</td><td>Selected Metric ✓</td></tr>
-                                <tr><td>GNB / LR</td><td>Lower</td><td>Baseline Only</td></tr>
+                                <tr class="winner-row"><td>Random Forest</td><td>Highest (0.93)</td><td>Selected Metric ✓</td></tr>
+                                <tr><td>KNN / LR / GNB</td><td>Lower</td><td>Baseline Only</td></tr>
                             </table>
                         </div>
 
@@ -414,7 +424,7 @@
                         <div class="absolute inset-0 bg-gradient-to-t from-base via-transparent to-transparent opacity-60 pointer-events-none"></div>
                     </div>
 
-                    <p class="text-textMuted text-sm mb-4">Binary classification model deployed via Streamlit. Processed feature mappings and structured stratified validation testing where KNN outperformed baseline models on final AUC target parameters.</p>
+                    <p class="text-textMuted text-sm mb-4">Binary classification model deployed via Streamlit. Processed feature mappings and structured stratified validation testing where Random Forest outperformed baseline models on final AUC target parameters.</p>
                 </div>
                 <div class="flex gap-4 mt-auto pt-4">
                     <a href="https://cancer-risk-prediction-nivedhj.streamlit.app/" target="_blank" class="text-emerald hover:text-white text-sm font-mono"><i class="fas fa-external-link-alt mr-1"></i>View Live App</a>
@@ -531,7 +541,7 @@
                 <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 rounded-xl border border-white/5 bg-cardBg">
                     <div class="flex items-center justify-between mb-2">
                         <h3 class="font-display font-bold text-xl text-textMain">Data Science & ML</h3>
-                        <span class="font-mono text-xs text-cyan">2025 - Present</span>
+                        <span class="font-mono text-xs text-cyan">2024 - Present</span>
                     </div>
                     <div class="text-sm text-textMuted mb-3">Self-Directed · Project-First Approach</div>
                     <p class="text-sm text-textMuted mb-2">Applying concepts directly to real datasets using Aurélien Géron's "Hands-On ML" and Kaggle analytics data tracks.</p>
@@ -545,7 +555,7 @@
                 <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 rounded-xl border border-white/5 bg-cardBg">
                     <div class="flex items-center justify-between mb-2">
                         <h3 class="font-display font-bold text-xl text-textMain">Bachelor of Computer Applications</h3>
-                        <span class="font-mono text-xs text-textMuted">2022 - 2025</span>
+                        <span class="font-mono text-xs text-textMuted">2021 - 2024</span>
                     </div>
                     <div class="text-sm text-textMuted mb-3">Mahatma Gandhi University, Kottayam, Kerala</div>
                     <p class="text-sm text-textMuted">Specialisation tracks in Data Analytics. Structured foundation concepts in Python programming, MySQL relational structures, and algorithms.</p>
@@ -559,7 +569,7 @@
                 <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 rounded-xl border border-white/5 bg-cardBg">
                     <div class="flex items-center justify-between mb-2">
                         <h3 class="font-display font-bold text-xl text-textMain">Vocational Higher Secondary (+2)</h3>
-                        <span class="font-mono text-xs text-textMuted">2020 - 2022</span>
+                        <span class="font-mono text-xs text-textMuted">2019 - 2021</span>
                     </div>
                     <div class="text-sm text-textMuted mb-3">Field Technician Computer Peripherals (FTCP)</div>
                     <p class="text-sm text-textMuted">Focused on hardware components, computer assembly, peripheral maintenance, and foundational IT skills.</p>
@@ -573,7 +583,7 @@
                 <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 rounded-xl border border-white/5 bg-cardBg">
                     <div class="flex items-center justify-between mb-2">
                         <h3 class="font-display font-bold text-xl text-textMain">10th Standard</h3>
-                        <span class="font-mono text-xs text-textMuted">Completed 2020</span>
+                        <span class="font-mono text-xs text-textMuted">Completed 2019</span>
                     </div>
                     <div class="text-sm text-textMuted mb-3">Technical Higher Secondary School</div>
                     <p class="text-sm text-textMuted">Early foundation in technical subjects, mathematics, and sciences.</p>
