@@ -193,9 +193,19 @@
                 <a href="#education" class="hover:text-cyan transition-colors">04. Education</a>
                 <a href="https://wa.me/919895806877?text=Hi%20Nivedh%2C%20I%20came%20across%20your%20portfolio%20and%20would%20like%20to%20connect!" target="_blank" class="border border-cyan text-cyan px-4 py-2 rounded hover:bg-cyan hover:text-base transition-all">hire_me()</a>
             </div>
-            <button class="md:hidden text-textMain focus:outline-none">
-                <i class="fas fa-bars text-xl"></i>
+            <button id="mobile-menu-btn" class="md:hidden text-textMain focus:outline-none hover:text-cyan transition-colors">
+                <i class="fas fa-bars text-2xl"></i>
             </button>
+        </div>
+        
+        <div id="mobile-menu" class="hidden md:hidden bg-base/95 backdrop-blur-xl border-b border-white/10 w-full">
+            <div class="px-6 py-4 flex flex-col space-y-5 text-sm font-mono text-textMuted">
+                <a href="#about" class="hover:text-cyan transition-colors mobile-link">01. About</a>
+                <a href="#skills" class="hover:text-cyan transition-colors mobile-link">02. Skills</a>
+                <a href="#projects" class="hover:text-cyan transition-colors mobile-link">03. Projects</a>
+                <a href="#education" class="hover:text-cyan transition-colors mobile-link">04. Education</a>
+                <a href="https://wa.me/919895806877?text=Hi%20Nivedh%2C%20I%20came%20across%20your%20portfolio%20and%20would%20like%20to%20connect!" target="_blank" class="text-cyan mobile-link font-bold">hire_me()</a>
+            </div>
         </div>
     </nav>
 
@@ -294,9 +304,7 @@
         <div class="grid md:grid-cols-3 gap-12 items-start">
             <div class="col-span-1 flex flex-col items-center fade-up">
                 <div class="avatar-glow w-48 h-48 mb-6 relative">
-                    <div class="w-full h-full bg-base rounded-full flex items-center justify-center border-4 border-base">
-                        <span class="text-5xl font-display font-bold text-textMain">NJ</span>
-                    </div>
+                    <img src="Acceptable(1).jpg" alt="Nivedh J Portrait" class="w-full h-full object-cover rounded-full border-[4px] border-base bg-base">
                 </div>
                 <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald/10 text-emerald text-xs font-mono">
                     <span class="w-2 h-2 rounded-full bg-emerald pulse-dot"></span> Available for Opportunities
@@ -408,7 +416,7 @@
                 </div>
             </div>
 
-            <div class="project-card rounded-xl p-6 fade-up relative overflow-hidden flex flex-col justify-between">
+            <div class="project-card rounded-xl p-6 fade-up border-emerald/30 relative overflow-hidden flex flex-col justify-between">
                 <div class="absolute top-0 right-0 bg-emerald/10 text-emerald text-xs font-mono px-3 py-1 rounded-bl-lg border-b border-l border-emerald/20 flex items-center gap-2 z-10">
                     <span class="w-1.5 h-1.5 rounded-full bg-emerald pulse-dot"></span> LIVE APP
                 </div>
@@ -425,6 +433,17 @@
                     </div>
 
                     <p class="text-textMuted text-sm mb-4">Binary classification model deployed via Streamlit. Processed feature mappings and structured stratified validation testing where Random Forest outperformed baseline models on final AUC target parameters.</p>
+                    
+                    <div class="mb-4 bg-base p-3 rounded border border-white/5 font-mono text-xs">
+                        <div class="text-emerald mb-2 font-bold">Best Model: Random Forest Classifier</div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <div class="flex justify-between border-b border-white/5 pb-1"><span class="text-textMuted">Accuracy:</span><span class="text-textMain">95.0%</span></div>
+                            <div class="flex justify-between border-b border-white/5 pb-1"><span class="text-textMuted">AUC-ROC:</span><span class="text-textMain">0.936</span></div>
+                            <div class="flex justify-between"><span class="text-textMuted">F1 Score:</span><span class="text-textMain">0.928</span></div>
+                            <div class="flex justify-between"><span class="text-textMuted">Precision:</span><span class="text-textMain">98.0%</span></div>
+                        </div>
+                    </div>
+
                 </div>
                 <div class="flex gap-4 mt-auto pt-4">
                     <a href="https://cancer-risk-prediction-nivedhj.streamlit.app/" target="_blank" class="text-emerald hover:text-white text-sm font-mono"><i class="fas fa-external-link-alt mr-1"></i>View Live App</a>
@@ -627,6 +646,7 @@
     </button>
 
     <script>
+        // Custom Cursor Logic
         const dot = document.querySelector('.cursor-dot');
         const ring = document.querySelector('.cursor-ring');
         
@@ -655,6 +675,22 @@
             });
         });
 
+        // Mobile Menu Toggle Logic
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileNavLinks = document.querySelectorAll('.mobile-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Typed.js Initialization
         new Typed('#typed-text', {
             strings: ['Data Analyst', 'End-to-End ML Builder', 'EDA Specialist', 'Power BI Developer', 'Python & Scikit-learn'],
             typeSpeed: 50,
@@ -664,6 +700,7 @@
             cursorChar: '_'
         });
 
+        // Intersection Observer for scroll animations
         const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -675,6 +712,7 @@
 
         document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
+        // Back to Top Button Logic
         const backToTop = document.getElementById('back-to-top');
         
         window.addEventListener('scroll', () => {
@@ -691,6 +729,7 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
+        // Background Particles Animation
         const canvas = document.getElementById('particles-canvas');
         const ctx = canvas.getContext('2d');
         let width, height, particles;
