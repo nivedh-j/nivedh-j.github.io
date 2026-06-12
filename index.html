@@ -780,22 +780,25 @@
         document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
         // Back to Top Button Logic
-        const backToTop = document.getElementById('back-to-top');
-        if(backToTop) {
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 300) {
-                    backToTop.classList.remove('opacity-0', 'pointer-events-none');
-                    backToTop.classList.add('opacity-100', 'cursor-pointer');
-                } else {
-                    backToTop.classList.add('opacity-0', 'pointer-events-none');
-                    backToTop.classList.remove('opacity-100', 'cursor-pointer');
-                }
-            });
+// VISITOR ENTRY ALERT VIA EMAILJS
+window.addEventListener('load', function() {
+    if (typeof emailjs === 'undefined') {
+        console.error('EmailJS SDK failed to load - check CDN script tag and network.');
+        return;
+    }
 
-            backToTop.addEventListener('click', () => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-        }
+    emailjs.send("service_0l2kegd", "template_aejh71m", {
+        name: "Portfolio Visitor",
+        email: "nivedh444@gmail.com",
+        to_email: "nivedh444@gmail.com",
+        message: "Someone has just opened your portfolio website!"
+    }).then(function(response) {
+        console.log('✅ Entry alert sent successfully:', response.status, response.text);
+    }, function(error) {
+        console.error('❌ Entry alert FAILED. Full error below:', error);
+        console.error('Status:', error.status, '| Text:', error.text);
+    });
+});
 
         // Background Particles Animation
         const canvas = document.getElementById('particles-canvas');
