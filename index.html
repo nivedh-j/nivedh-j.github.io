@@ -750,18 +750,20 @@
         }
 
         // SILENT EMAIL ALERT ON PAGE LOAD VIA EMAILJS
+// SILENT EMAIL ALERT ON PAGE LOAD
         window.addEventListener('load', function() {
             try {
-                emailjs.send("service_3244h11", "template_aejh71m", {
-                    to_name: "Nivedh",
+                emailjs.send("service_0l2kegd", "template_aejh71m", {
+                    name: "Portfolio Visitor",
+                    email: "nivedh444@gmail.com",
                     message: "Someone has just opened your portfolio website!"
                 }).then(function(response) {
                     console.log('Silent entry alert sent.', response.status);
                 }, function(error) {
-                    console.log('Entry alert failed...', error);
+                    console.log('Entry alert failed - check Template ID...', error);
                 });
             } catch (err) {
-                console.log("EmailJS not configured.");
+                console.log("EmailJS configuration error.");
             }
         });
 
