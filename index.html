@@ -4,13 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nivedh J | Data Analyst & Data Scientist</title>
-    
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script type="text/javascript">
-        (function() {
-            emailjs.init("qLTUoSHkBlkb9qJjZa6CM");
-        })();
-    </script>
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
@@ -56,14 +49,15 @@
         h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; }
         .font-mono { font-family: 'JetBrains Mono', monospace; }
 
-        /* Custom Cursor */
+        /* Custom Cursor - FIXED */
         .cursor-dot {
             width: 8px; height: 8px;
             background-color: #38BDF8;
             border-radius: 50%;
             position: fixed;
+            top: 0; left: 0; /* This prevents disappearing on scroll */
             pointer-events: none;
-            z-index: 9999;
+            z-index: 99999;
             transform: translate(-50%, -50%);
             transition: width 0.2s, height 0.2s;
         }
@@ -72,8 +66,9 @@
             border: 2px solid #818CF8;
             border-radius: 50%;
             position: fixed;
+            top: 0; left: 0; /* This prevents disappearing on scroll */
             pointer-events: none;
-            z-index: 9998;
+            z-index: 99998;
             transform: translate(-50%, -50%);
             transition: top 0.1s ease-out, left 0.1s ease-out, width 0.2s, height 0.2s;
         }
@@ -89,7 +84,7 @@
             object-fit: cover; z-index: -2;
         }
 
-        /* Dark Filter Layer to make text completely legible */
+        /* Dark Overlay to increase text contrast */
         .video-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-color: rgba(3, 5, 10, 0.75);
@@ -410,19 +405,19 @@
                 <div>
                     <div class="flex justify-between items-start mb-4">
                         <div class="text-amber text-xs font-mono mb-2"><i class="fas fa-chart-bar mr-1"></i>Election Analytics · Power BI Dashboard</div>
-                        <a href="https://github.com/nivedh-j/kerala-election-analysis-powerbi" target="_blank" class="text-textMuted hover:text-cyan text-xl"><i class="fab fa-github"></i></a>
+                        <a href="https://github.com/nivedh-j/kerala-election-powerbi-dashboard" target="_blank" class="text-textMuted hover:text-cyan text-xl"><i class="fab fa-github"></i></a>
                     </div>
                     <h3 class="text-2xl font-display font-bold mb-2">Kerala Election Analytics Dashboard</h3>
                     
                     <div class="w-full h-44 rounded-lg overflow-hidden border border-white/10 mb-4 bg-black/50 relative group cursor-pointer" onclick="window.open('https://github.com/nivedh-j/kerala-election-powerbi-dashboard', '_blank')">
-                        <img src="https://github.com/nivedh-j/kerala-election-analysis-powerbi" alt="Kerala Election Overview Dashboard" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-80 group-hover:opacity-100" onerror="this.src='https://images.unsplash.com/photo-1540910419892-4a36d2c3266c?auto=format&fit=crop&w=600&q=80'">
+                        <img src="https://raw.githubusercontent.com/nivedh-j/nivedh-j.github.io/main/img/kerala_overview.png" alt="Kerala Election Overview Dashboard" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-80 group-hover:opacity-100" onerror="this.src='https://images.unsplash.com/photo-1540910419892-4a36d2c3266c?auto=format&fit=crop&w=600&q=80'">
                         <div class="absolute inset-0 bg-gradient-to-t from-base via-transparent to-transparent opacity-60 pointer-events-none"></div>
                     </div>
 
                     <p class="text-gray-300 text-sm mb-4 leading-relaxed">Centralized intelligence pipeline evaluating 14 districts and 140 constituencies. Cleansed and aggregated raw polling datasets, constructing relational data models and automated DAX calculations for alliance vote share performance reporting.</p>
                 </div>
-                <div class="text-xs font-mono text-gray-400 mt-auto pt-4">
-                    <span class="text-cyan font-bold">Stack:</span> Power BI Desktop, Power Query, DAX, Election Analytics
+                <div class="text-xs font-mono text-gray-400 mt-auto">
+                    <span class="text-cyan font-bold">Stack:</span> Power BI Desktop, Power Query, DAX, Election Data Analytics, Descriptive Analytics
                 </div>
             </div>
 
@@ -464,35 +459,6 @@
             <div class="project-card rounded-xl p-6 fade-up flex flex-col justify-between">
                 <div>
                     <div class="flex justify-between items-start mb-4">
-                        <div class="text-amber text-xs font-mono mb-2"><i class="fas fa-cloud-showers-heavy mr-1"></i>Weather Analytics · Regression</div>
-                        <a href="https://github.com/nivedh-j/rainfall-prediction-970k-weather-records" target="_blank" class="text-textMuted hover:text-cyan text-xl"><i class="fab fa-github"></i></a>
-                    </div>
-                    <h3 class="text-2xl font-display font-bold mb-2">India Weather Analysis</h3>
-                    
-                    <div class="w-full h-44 rounded-lg overflow-hidden border border-white/10 mb-4 bg-black/50 relative group cursor-pointer" onclick="window.open('https://github.com/nivedh-j/india-weather-analysis-970k', '_blank')">
-                        <img src="https://github.com/nivedh-j/rainfall-prediction-970k-weather-records" alt="Rainfall Distribution Chart" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-80 group-hover:opacity-100" onerror="this.src='https://images.unsplash.com/photo-1534274988757-a28bf1a57c17?auto=format&fit=crop&w=600&q=80'">
-                        <div class="absolute inset-0 bg-gradient-to-t from-base via-transparent to-transparent opacity-60 pointer-events-none"></div>
-                    </div>
-
-                    <p class="text-gray-300 text-sm mb-4 leading-relaxed">Large-scale analysis over 970,339 records collected across India. Conducted missing value median treatments and seasonal patterns engineering.</p>
-                    
-                    <div class="mb-4 bg-black/40 p-3 rounded border border-white/5 font-mono text-xs">
-                        <table class="w-full">
-                            <tr><th class="text-cyan text-left pb-1">Metric Evaluated</th><th class="text-cyan text-left pb-1">Value</th></tr>
-                            <tr><td class="text-gray-300 py-1 border-t border-white/10">Training R² Score</td><td class="text-white py-1 border-t border-white/10">0.986</td></tr>
-                            <tr><td class="text-gray-300 py-1 border-t border-white/10">Testing R² Score</td><td class="text-rose py-1 border-t border-white/10">-0.219</td></tr>
-                            <tr><td class="text-gray-300 py-1 border-t border-white/10">Pipeline RMSE</td><td class="text-white py-1 border-t border-white/10">13.98 mm</td></tr>
-                        </table>
-                    </div>
-                </div>
-                <div class="text-xs font-mono text-gray-400 mt-auto pt-4">
-                    <span class="text-cyan font-bold">Stack:</span> Pandas, NumPy, Scikit-Learn, Matplotlib, Seaborn
-                </div>
-            </div>
-
-            <div class="project-card rounded-xl p-6 fade-up flex flex-col justify-between">
-                <div>
-                    <div class="flex justify-between items-start mb-4">
                         <div class="text-amber text-xs font-mono mb-2"><i class="fas fa-star mr-1"></i>Machine Learning · Multi-class</div>
                         <a href="https://github.com/nivedh-j/drug-classification-ml" target="_blank" class="text-textMuted hover:text-cyan text-xl"><i class="fab fa-github"></i></a>
                     </div>
@@ -505,15 +471,16 @@
 
                     <p class="text-gray-300 text-sm mb-4 leading-relaxed">Multi-class classifier mapping patient features to 5 drug targets. Utilized SMOTE to handle severe target class imbalance and verified integrity metrics using confusion matrices.</p>
                 </div>
-                <div class="text-xs font-mono text-gray-400 mt-auto pt-4">
+                <div class="text-xs font-mono text-gray-400 mb-4">
                     <span class="text-cyan font-bold">Stack:</span> Scikit-learn, SMOTE, Pandas, Seaborn
                 </div>
+                <a href="https://github.com/nivedh-j/drug-classification-ml" target="_blank" class="text-textMuted hover:text-white text-sm font-mono mt-auto"><i class="fab fa-github mr-1"></i>View Repository</a>
             </div>
 
             <div class="project-card rounded-xl p-6 fade-up flex flex-col justify-between">
                 <div>
                     <div class="flex justify-between items-start mb-4">
-                        <div class="text-amber text-xs font-mono mb-2"><i class="fas fa-chart-line mr-1"></i>Business Intelligence</div>
+                        <div class="text-amber text-xs font-mono mb-2"><i class="fas fa-star mr-1"></i>Business Intelligence</div>
                         <a href="https://github.com/nivedh-j/Sales-Analytics-Power-BI-Dashboard" target="_blank" class="text-textMuted hover:text-cyan text-xl"><i class="fab fa-github"></i></a>
                     </div>
                     <h3 class="text-2xl font-display font-bold mb-2">Sales Analytics Dashboard</h3>
@@ -525,15 +492,16 @@
 
                     <p class="text-gray-300 text-sm mb-4 leading-relaxed">Interactive Power BI report with active slicers, custom DAX filters, and cross-drill functions. Uncovered a hidden 34% revenue drop anomaly inside deep transactional records.</p>
                 </div>
-                <div class="text-xs font-mono text-gray-400 mt-auto pt-4">
+                <div class="text-xs font-mono text-gray-400 mb-4">
                     <span class="text-cyan font-bold">Stack:</span> Power BI, DAX, Excel
                 </div>
+                <a href="https://github.com/nivedh-j/Sales-Analytics-Power-BI-Dashboard" target="_blank" class="text-textMuted hover:text-white text-sm font-mono mt-auto"><i class="fab fa-github mr-1"></i>View Repository</a>
             </div>
 
-            <div class="project-card rounded-xl p-6 fade-up flex flex-col justify-between">
+            <div class="project-card rounded-xl p-6 fade-up flex flex-col justify-between md:col-span-2 lg:col-span-1">
                 <div>
                     <div class="flex justify-between items-start mb-4">
-                        <div class="text-amber text-xs font-mono mb-2"><i class="fas fa-home mr-1"></i>Machine Learning · Regression</div>
+                        <div class="text-amber text-xs font-mono mb-2"><i class="fas fa-star mr-1"></i>Machine Learning · Regression</div>
                         <a href="https://github.com/nivedh-j/california-house-price-prediction" target="_blank" class="text-textMuted hover:text-cyan text-xl"><i class="fab fa-github"></i></a>
                     </div>
                     <h3 class="text-2xl font-display font-bold mb-2">California House Price Prediction</h3>
@@ -544,17 +512,16 @@
                     </div>
 
                     <p class="text-gray-300 text-sm mb-4 leading-relaxed">End-to-end regression pipeline predicting median house prices across 20,640 records. Handled data cleaning, feature engineering, and model tuning.</p>
-                    
-                    <div class="mb-4 bg-black/40 p-3 rounded border border-white/5 font-mono text-xs">
-                        <table class="w-full">
-                            <tr><th class="text-cyan text-left pb-1">Model</th><th class="text-cyan text-left pb-1">RMSE</th></tr>
-                            <tr><td class="text-gray-300 py-1 border-t border-white/10">Linear Reg</td><td class="text-white py-1 border-t border-white/10">69,104</td></tr>
-                            <tr><td class="text-gray-300 py-1 border-t border-white/10">Decision Tree</td><td class="text-white py-1 border-t border-white/10">71,629</td></tr>
-                            <tr class="winner-row"><td class="py-1 border-t border-white/10">Random Forest</td><td class="py-1 border-t border-white/10">47,873</td></tr>
+                    <div class="mb-4 bg-black/40 p-3 rounded border border-white/5">
+                        <table>
+                            <tr><th>Model</th><th>RMSE</th><th>Verdict</th></tr>
+                            <tr><td>Linear Reg</td><td>69,104</td><td>Underfit</td></tr>
+                            <tr><td>Decision Tree</td><td>71,629</td><td>Overfit</td></tr>
+                            <tr class="winner-row"><td>Random Forest</td><td>47,873</td><td>Best ✓</td></tr>
                         </table>
                     </div>
                 </div>
-                <div class="text-xs font-mono text-gray-400 mt-auto pt-4">
+                <div class="text-xs font-mono text-gray-400 mt-auto">
                     <span class="text-cyan font-bold">Stack:</span> Scikit-learn, Pandas, GridSearchCV
                 </div>
             </div>
@@ -802,7 +769,6 @@
         backToTop.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
-
     </script>
 </body>
 </html>
