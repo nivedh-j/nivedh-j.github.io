@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nivedh J | 3D/4D Interactive Portfolio</title>
+    
+    <link rel="stylesheet" href="style.css">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Moving Sunset Ambient Gradients in Background -->
+    <div class="ambient-glows">
+        <div class="glow-1"></div>
+        <div class="glow-2"></div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+
+    <!-- WebGL Canvas for 3D Blob / 4D Tesseract -->
+    <div id="canvas-container"></div>
+
+    <!-- Navigation Header -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">NJ<span>.</span></a>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#skills">Arsenal</a>
+                <a href="#projects">Deployments</a>
+                <a href="#education">Timeline</a>
+                <a href="https://wa.me/919895806877?text=Hi%20Nivedh%2C%20I%20came%20across%20your%20portfolio%20and%20would%20like%20to%20connect!" target="_blank" class="btn-hire">Connect</a>
+            </div>
+            <button class="menu-btn" id="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <!-- Mobile Dropdown Menu -->
+        <div class="mobile-menu" id="mobile-menu-container">
+            <div class="mobile-menu-links">
+                <a href="#about" class="mobile-link">About</a>
+                <a href="#skills" class="mobile-link">Arsenal</a>
+                <a href="#projects" class="mobile-link">Deployments</a>
+                <a href="#education" class="mobile-link">Timeline</a>
+                <a href="https://wa.me/919895806877?text=Hi%20Nivedh%2C%20I%20came%20across%20your%20portfolio%20and%20would%20like%20to%20connect!" target="_blank" class="btn-hire">Connect</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Flow -->
+    <main>
+
+        <!-- Hero Section -->
+        <section id="hero">
+            <div class="hero-content">
+                <div class="availability-tag">
+                    <span class="pulse-dot"></span> Available for Opportunities
+                </div>
+                <h1 class="hero-name">Nivedh J</h1>
+                <h2 class="hero-subtitle">Data Scientist &amp; Analyst</h2>
+                <div class="hero-typed">&gt; <span id="typed-text"></span></div>
+                
+                <p class="hero-quote">
+                    "I build end-to-end analytical solutions, transforming raw coordinates into clean pipelines and interactive models."
+                </p>
+
+                <!-- Core Stats Grid -->
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-item-num">1M+</div>
+                        <div class="stat-item-label">Rows Cleansed</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-item-num">0.936</div>
+                        <div class="stat-item-label">Best AUC-ROC</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-item-num">8+</div>
+                        <div class="stat-item-label">Models Ran</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-item-num">5</div>
+                        <div class="stat-item-label">BI Dashboards</div>
+                    </div>
+                </div>
+
+                <!-- Action buttons -->
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn-primary">View Deployments</a>
+                    <a href="Nivedh_J_Resume.pdf" download="Nivedh_J_Resume.pdf" class="btn-secondary">
+                        <i class="fas fa-download" style="margin-right: 0.5rem;"></i>Download CV
+                    </a>
+                    <div class="hero-socials">
+                        <a href="https://github.com/nivedh-j" target="_blank" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/nivedhj/" target="_blank" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Floating 3D Metric card -->
+            <div class="hero-widget">
+                <div class="glass-card-3d">
+                    <div class="widget-header">
+                        <div class="widget-title">MODEL_EVALUATION_LOGS</div>
+                        <div class="widget-badge">VALIDATED</div>
+                    </div>
+                    <div class="widget-body">
+                        <div>
+                            <div class="widget-section-title" style="color: var(--peach);">
+                                <i class="fas fa-cloud-showers-heavy" style="margin-right: 0.4rem;"></i> Rainfall Regression
+                            </div>
+                            <table class="widget-table">
+                                <thead>
+                                    <tr>
+                                        <th>Metric</th>
+                                        <th>Training</th>
+                                        <th>Validation</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>R² Score</td>
+                                        <td>0.986</td>
+                                        <td class="highlight-overfit">-0.219 (Overfit)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>RMSE</td>
+                                        <td>—</td>
+                                        <td>13.98 mm</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div>
+                            <div class="widget-section-title" style="color: var(--peach);">
+                                <i class="fas fa-dna" style="margin-right: 0.4rem;"></i> Cancer Classification
+                            </div>
+                            <table class="widget-table">
+                                <thead>
+                                    <tr>
+                                        <th>Algorithm</th>
+                                        <th>AUC-ROC</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="highlight-win">
+                                        <td>Random Forest</td>
+                                        <td>Highest (0.936)</td>
+                                        <td>Selected Model</td>
+                                    </tr>
+                                    <tr>
+                                        <td>KNN / LR / GNB</td>
+                                        <td>Lower</td>
+                                        <td>Baseline</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div>
+                            <div class="widget-section-title" style="color: var(--peach);">
+                                <i class="fas fa-pills" style="margin-right: 0.4rem;"></i> Multi-class Classification
+                            </div>
+                            <table class="widget-table">
+                                <thead>
+                                    <tr>
+                                        <th>Methodology</th>
+                                        <th>Data Balance</th>
+                                        <th>Validation</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>SMOTE + RF</td>
+                                        <td>Oversampled</td>
+                                        <td>Confusion Matrix</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dynamic Ticker -->
+        <div class="ticker-container">
+            <div class="ticker-track">
+                <div class="ticker-scroll">
+                    Python // SQL // Pandas // NumPy // Matplotlib // Seaborn // Plotly // Power BI // Scikit-Learn // Streamlit // Python // SQL // Pandas // NumPy // Matplotlib // Seaborn // Plotly // Power BI // Scikit-Learn // Streamlit //
+                </div>
+            </div>
+        </div>
+
+        <!-- About Section -->
+        <section id="about">
+            <div class="section-header">
+                <span class="section-number">01 / Coordinates</span>
+                <h2 class="section-title">Data Integrity &amp; Insights</h2>
+            </div>
+
+            <div class="about-grid">
+                <div class="about-photo-wrapper">
+                    <div class="avatar-glow">
+                        <img src="img/portrait.jpg" alt="Nivedh J Portrait" class="avatar-img">
+                    </div>
+                    <div class="availability-tag" style="margin-bottom: 0;">
+                        <span class="pulse-dot"></span> Active Candidate
+                    </div>
+                </div>
+
+                <div class="about-details">
+                    <p>I am pursuing Data Science, building on a foundation in Computer Applications from Mahatma Gandhi University, Kottayam, Kerala. I spend my time cleaning complex datasets, creating automated ML training loops, and writing business reports with deep analytics. Every project follows one core value: understand the context first, then write the math.</p>
+                    <p>My work integrates data extraction, processing, pipeline optimization, predictive model building, and visualizing metrics through client dashboards.</p>
+                    
+                    <div class="about-box-highlight">
+                        <p><span>🔭 Focus Tracks:</span> Advanced ensemble models, feature selection, pipeline automation, and business intelligence.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Skills Section -->
+        <section id="skills">
+            <div class="section-header">
+                <span class="section-number">02 / Expertise</span>
+                <h2 class="section-title">Technical Arsenal</h2>
+            </div>
+
+            <div class="skills-grid">
+                <!-- Languages Card -->
+                <div class="skill-card">
+                    <h3 class="skill-title"><i class="fas fa-terminal"></i> Languages</h3>
+                    <ul class="skill-list">
+                        <li><span class="dot"></span><span class="text">Python</span></li>
+                        <li><span class="dot"></span><span class="text">SQL (MySQL)</span></li>
+                        <li><span class="dot"></span><span class="text">HTML / CSS</span></li>
+                    </ul>
+                </div>
+
+                <!-- Libraries Card -->
+                <div class="skill-card">
+                    <h3 class="skill-title"><i class="fas fa-box-open"></i> Core Libraries</h3>
+                    <ul class="skill-list">
+                        <li><span class="dot"></span><span class="text">Pandas</span></li>
+                        <li><span class="dot"></span><span class="text">NumPy</span></li>
+                        <li><span class="dot"></span><span class="text">Scikit-Learn</span></li>
+                        <li><span class="dot"></span><span class="text">BeautifulSoup</span></li>
+                    </ul>
+                </div>
+
+                <!-- Tools Card -->
+                <div class="skill-card">
+                    <h3 class="skill-title"><i class="fas fa-chart-line"></i> BI &amp; Analytics</h3>
+                    <ul class="skill-list">
+                        <li><span class="dot"></span><span class="text">Power BI</span></li>
+                        <li><span class="dot"></span><span class="text">Matplotlib</span></li>
+                        <li><span class="dot"></span><span class="text">Seaborn</span></li>
+                        <li><span class="dot"></span><span class="text">Plotly</span></li>
+                    </ul>
+                </div>
+
+                <!-- Concepts Card -->
+                <div class="concepts-card">
+                    <h3 class="concepts-title">Core Competencies</h3>
+                    <div class="concepts-flex">
+                        <span class="concept-tag">Exploratory Data Analysis (EDA)</span>
+                        <span class="concept-tag">Feature Engineering</span>
+                        <span class="concept-tag">Supervised Learning Models</span>
+                        <span class="concept-tag">Cross-Validation Structures</span>
+                        <span class="concept-tag">GridSearchCV Hyperparameter Tuning</span>
+                        <span class="concept-tag">SMOTE Target Class Balancers</span>
+                        <span class="concept-tag">Confusion Matrix Evaluation</span>
+                        <span class="concept-tag">DAX Calculations &amp; Modeling</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Grid Section (Horizontal Carousel slider) -->
+        <section id="projects">
+            <div class="section-header">
+                <span class="section-number">03 / Deployments</span>
+                <h2 class="section-title">Selected Work</h2>
+            </div>
+
+            <!-- Horizontal carousel container -->
+            <div class="projects-slider-wrapper">
+                
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-category">
+                            <i class="fas fa-chart-pie"></i> BI Dashboard · Analytics
+                        </div>
+                        <a href="https://github.com/nivedh-j/kerala-election-analysis-powerbi" target="_blank" class="project-github-link">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                    <h3 class="project-title">Kerala Election Analytics</h3>
+                    
+                    <div class="project-img-container">
+                        <img src="https://raw.githubusercontent.com/nivedh-j/nivedh-j.github.io/main/img/Election Dashboard.png" alt="Election Analytics Dashboard View" class="project-img" onerror="this.src='https://images.unsplash.com/photo-1540910419892-4a36d2c3266c?auto=format&fit=crop&w=600&q=80'">
+                    </div>
+
+                    <p class="project-desc">A centralized polling analysis report visualizing data across 14 districts and 140 constituencies. Consolidated vote records, engineered DAX scripts, and mapped alliances to showcase historical swings.</p>
+                    
+                    <div class="project-stack">
+                        <span>Stack:</span> Power BI, Power Query, DAX Data Models
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <div class="live-badge">LIVE DEMO</div>
+                    <div class="project-header">
+                        <div class="project-category" style="margin-top: 0.5rem;">
+                            <i class="fas fa-robot"></i> Binary Classification
+                        </div>
+                        <a href="https://github.com/nivedh-j/cancer-risk-prediction" target="_blank" class="project-github-link">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                    <h3 class="project-title">Cancer Risk Classifier</h3>
+                    
+                    <div class="project-img-container">
+                        <img src="https://raw.githubusercontent.com/nivedh-j/nivedh-j.github.io/main/img/Cancer%20Prediction.png" alt="Classifier Web Application Interface" class="project-img" onerror="this.src='https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=600&q=80'">
+                    </div>
+
+                    <p class="project-desc">Interactive diagnosis predictor powered by Random Forest and served on Streamlit. Performs clean feature scaling and evaluates inputs to output risk percentage indicators.</p>
+                    
+                    <div class="project-stats-widget">
+                        <div class="project-stats-title">Performance Metrics</div>
+                        <div class="project-stats-grid">
+                            <div class="project-stat-row"><span class="project-stat-name">Accuracy:</span><span class="project-stat-value">95.0%</span></div>
+                            <div class="project-stat-row"><span class="project-stat-name">AUC-ROC:</span><span class="project-stat-value">0.936</span></div>
+                            <div class="project-stat-row"><span class="project-stat-name">F1 Score:</span><span class="project-stat-value">0.928</span></div>
+                            <div class="project-stat-row"><span class="project-stat-name">Precision:</span><span class="project-stat-value">98.0%</span></div>
+                        </div>
+                    </div>
+
+                    <div class="project-links">
+                        <a href="https://cancer-risk-prediction-nivedhj.streamlit.app/" target="_blank" class="project-live-btn"><i class="fas fa-external-link-alt"></i> Run App</a>
+                        <a href="https://github.com/nivedh-j/cancer-risk-prediction" target="_blank" class="project-code-btn"><i class="fab fa-github"></i> Source</a>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-category">
+                            <i class="fas fa-umbrella"></i> Regression Models
+                        </div>
+                        <a href="https://github.com/nivedh-j/india-weather-analysis-970k" target="_blank" class="project-github-link">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                    <h3 class="project-title">India Weather Analytics</h3>
+                    
+                    <div class="project-img-container">
+                        <img src="https://raw.githubusercontent.com/nivedh-j/nivedh-j.github.io/main/img/seasonal_analysis.png" alt="Rainfall charts" class="project-img" onerror="this.src='https://images.unsplash.com/photo-1534274988757-a28bf1a57c17?auto=format&fit=crop&w=600&q=80'">
+                    </div>
+
+                    <p class="project-desc">A regression project evaluating 970,339 historical records across India. Analyzed seasonal distributions, handled nulls, and evaluated prediction stability limits.</p>
+                    
+                    <div class="project-stats-widget">
+                        <div class="project-stats-title">Performance Log</div>
+                        <div class="project-stats-grid">
+                            <div class="project-stat-row"><span class="project-stat-name">Training R²:</span><span class="project-stat-value">0.986</span></div>
+                            <div class="project-stat-row"><span class="project-stat-name" style="color: var(--gold);">Testing R²:</span><span class="project-stat-value" style="color: var(--gold);">-0.219 (Overfit)</span></div>
+                            <div class="project-stat-row"><span class="project-stat-name">Pipeline RMSE:</span><span class="project-stat-value">13.98 mm</span></div>
+                        </div>
+                    </div>
+
+                    <div class="project-stack">
+                        <span>Stack:</span> Scikit-Learn, Pandas, NumPy, Visuals
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-category">
+                            <i class="fas fa-pills"></i> Multi-class Classification
+                        </div>
+                        <a href="https://github.com/nivedh-j/drug-classification-ml" target="_blank" class="project-github-link">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                    <h3 class="project-title">Drug Classification Model</h3>
+                    
+                    <div class="project-img-container">
+                        <img src="https://raw.githubusercontent.com/nivedh-j/nivedh-j.github.io/main/img/Drug%20Classification.png" alt="Drug Categories charts" class="project-img" onerror="this.src='https://images.unsplash.com/photo-1584017911766-d451b3d0e843?auto=format&fit=crop&w=600&q=80'">
+                    </div>
+
+                    <p class="project-desc">Classification pipeline mapping patients to drug types. Addressed severe data target imbalances using SMOTE oversampling algorithms and validated with confusion matrix metrics.</p>
+                    
+                    <div class="project-stack">
+                        <span>Stack:</span> Scikit-learn, SMOTE Imbalance, Pandas
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-category">
+                            <i class="fas fa-chart-line"></i> Transactional BI
+                        </div>
+                        <a href="https://github.com/nivedh-j/Sales-Analytics-Power-BI-Dashboard" target="_blank" class="project-github-link">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                    <h3 class="project-title">Sales Analytics Report</h3>
+
+                    <div class="project-img-container">
+                        <img src="https://raw.githubusercontent.com/nivedh-j/nivedh-j.github.io/main/img/Sales%20Dashboard.png" alt="Sales dashboard interface" class="project-img" onerror="this.src='https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80'">
+                    </div>
+
+                    <p class="project-desc">Interactive dashboard presenting sales trends with active filters, custom slicers, and drilldown triggers. Exposed transaction anomalies, isolating a 34% quarterly sales loss.</p>
+                    
+                    <div class="project-stack">
+                        <span>Stack:</span> Power BI Desktop, DAX Measures, Excel Data
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-category">
+                            <i class="fas fa-house-user"></i> Tuning &amp; Regressors
+                        </div>
+                        <a href="https://github.com/nivedh-j/california-house-price-prediction" target="_blank" class="project-github-link">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                    <h3 class="project-title">California House Pricing</h3>
+
+                    <div class="project-img-container">
+                        <img src="https://raw.githubusercontent.com/nivedh-j/nivedh-j.github.io/main/img/California%20House%20Prediction.png" alt="Pricing charts" class="project-img" onerror="this.src='https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=600&q=80'">
+                    </div>
+
+                    <p class="project-desc">A regression model predicting median house valuation. Evaluated raw features, performed GridSearchCV tuning, and compared random forest performance limits.</p>
+                    
+                    <div class="project-stats-widget">
+                        <div class="project-stats-title">Model Comparison (RMSE)</div>
+                        <div class="project-stats-grid">
+                            <div class="project-stat-row"><span class="project-stat-name">Linear Reg:</span><span class="project-stat-value">69,104</span></div>
+                            <div class="project-stat-row"><span class="project-stat-name">Decision Tree:</span><span class="project-stat-value">71,629</span></div>
+                            <div class="project-stat-row" style="color: var(--peach); font-weight: 700;"><span class="project-stat-name" style="color: var(--peach);">Random Forest:</span><span class="project-stat-value" style="color: var(--peach);">47,873</span></div>
+                        </div>
+                    </div>
+
+                    <div class="project-stack">
+                        <span>Stack:</span> Scikit-Learn, Pandas, Hyperparameter Tuning
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Extra Projects section -->
+            <div class="extra-projects-section">
+                <h3 class="extra-projects-title">Data Explorations</h3>
+                <div class="extra-projects-grid">
+                    
+                    <!-- Extra 1 -->
+                    <a href="https://github.com/nivedh-j/imdb-top-1000-analysis" target="_blank" class="mini-card">
+                        <div class="mini-header">
+                            <h4 class="mini-title">IMDB Top 1000 EDA</h4>
+                            <i class="fab fa-github" style="color: var(--text-muted);"></i>
+                        </div>
+                        <p class="mini-desc">Uncovered that Action genres grossed 3x more than Drama, despite Drama representing 58% of the list.</p>
+                        <div class="mini-stack">Pandas · Seaborn · Plotly</div>
+                    </a>
+
+                    <!-- Extra 2 -->
+                    <a href="https://github.com/nivedh-j/Netflix-eda" target="_blank" class="mini-card">
+                        <div class="mini-header">
+                            <h4 class="mini-title">Netflix Library EDA</h4>
+                            <i class="fab fa-github" style="color: var(--text-muted);"></i>
+                        </div>
+                        <p class="mini-desc">Analyzed 8,800+ titles to track monthly additions and genre shifts across years.</p>
+                        <div class="mini-stack">Python · Pandas · Plotly</div>
+                    </a>
+
+                    <!-- Extra 3 -->
+                    <a href="https://github.com/nivedh-j/Amazon-Mobile-Scraping" target="_blank" class="mini-card">
+                        <div class="mini-header">
+                            <h4 class="mini-title">Amazon Product Scraper</h4>
+                            <i class="fab fa-github" style="color: var(--text-muted);"></i>
+                        </div>
+                        <p class="mini-desc">Python scrapper with automated rate limiters extracting mobile parameters into CSV outputs.</p>
+                        <div class="mini-stack">BeautifulSoup · Requests</div>
+                    </a>
+
+                </div>
+
+                <!-- Web Development Card -->
+                <div class="early-projects-box">
+                    <h3 class="early-projects-title">Web Projects</h3>
+                    <div class="early-grid">
+                        <a href="https://github.com/nivedh-j/fuel_delivery" target="_blank" class="early-card">
+                            <div class="early-header">
+                                <span>Fuel Drop</span>
+                                <i class="fab fa-github" style="color: var(--text-muted);"></i>
+                            </div>
+                            <p class="early-desc">On-demand fuel delivery backend platform. Designed HTML structures and Python routes.</p>
+                        </a>
+                        <a href="https://github.com/nivedh-j/Legal-Guru" target="_blank" class="early-card">
+                            <div class="early-header">
+                                <span>Legal Guru</span>
+                                <i class="fab fa-github" style="color: var(--text-muted);"></i>
+                            </div>
+                            <p class="early-desc">Legal consultancy services booking system. Integrated SQLite database engines.</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Timeline -->
+        <section id="education">
+            <div class="section-header">
+                <span class="section-number">04 / Timeline</span>
+                <h2 class="section-title">Education &amp; Growth</h2>
+            </div>
+
+            <div class="timeline">
+                
+                <!-- Timeline Item 1 -->
+                <div class="timeline-item">
+                    <div class="timeline-card">
+                        <div class="timeline-header">
+                            <h3 class="timeline-title">Data Science &amp; ML</h3>
+                            <span class="timeline-date">2025 - Present</span>
+                        </div>
+                        <div class="timeline-institution">Self-Directed Track</div>
+                        <p class="timeline-desc">Focussed on algorithmic structures, models tuning, ensemble logic, and cross-validation architectures using Kaggle and ML text resources.</p>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 2 -->
+                <div class="timeline-item">
+                    <div class="timeline-card">
+                        <div class="timeline-header">
+                            <h3 class="timeline-title">Bachelor of Computer Apps</h3>
+                            <span class="timeline-date">2022 - 2025</span>
+                        </div>
+                        <div class="timeline-institution">Mahatma Gandhi University, Kerala</div>
+                        <p class="timeline-desc">Specialization in data analysis. Covered OOP structures, relational databases (MySQL), statistics, and basic analytics pipelines.</p>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 3 -->
+                <div class="timeline-item">
+                    <div class="timeline-card">
+                        <div class="timeline-header">
+                            <h3 class="timeline-title">Vocational Higher Secondary (+2)</h3>
+                            <span class="timeline-date">2020 - 2022</span>
+                        </div>
+                        <div class="timeline-institution">FTCP Technical Track</div>
+                        <p class="timeline-desc">Field Technician Computer Peripherals. Handled hardware components, peripheral maintenance, and fundamental computer repair concepts.</p>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 4 -->
+                <div class="timeline-item">
+                    <div class="timeline-card">
+                        <div class="timeline-header">
+                            <h3 class="timeline-title">10th Standard</h3>
+                            <span class="timeline-date">Completed 2020</span>
+                        </div>
+                        <div class="timeline-institution">Technical Higher Secondary School</div>
+                        <p class="timeline-desc">Gained foundational exposure to mathematics, technical drawing, and general sciences.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <div class="contact-badge">
+                <span class="pulse-dot"></span> Available for immediate hire
+            </div>
+            <h2 class="contact-title">Let's build pipelines.</h2>
+            <div class="contact-box">
+                <p class="contact-text">
+                    Open to junior Data Analyst roles, Data Science internships, and collaborative data projects. I bring clean code, mathematical curiosity, and transparent results.
+                </p>
+            </div>
+
+            <div class="contact-buttons">
+                <a href="https://wa.me/919895806877?text=Hi%20Nivedh%2C%20I%20came%20across%20your%20portfolio%20and%20would%20like%20to%20connect!" target="_blank" class="btn-whatsapp">
+                    <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+                </a>
+                <a href="https://mail.google.com/mail/?view=cm&to=nivedh444@gmail.com" target="_blank" class="btn-email">
+                    <i class="fas fa-envelope"></i> Send Email
+                </a>
+                <a href="https://github.com/nivedh-j" target="_blank" class="btn-social-icon" title="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/nivedhj/" target="_blank" class="btn-social-icon" title="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>Built by Nivedh J · Data Analyst &amp; Data Scientist · Kerala, India</p>
+    </footer>
+
+    <!-- Back to top button -->
+    <button id="back-to-top" title="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Core CDN Libraries -->
+    <!-- Three.js (WebGL Core) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- GSAP (Animation core) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <!-- GSAP ScrollTrigger (Linked Scroll Engine) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- Typed.js (Subtitle writing effect) -->
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+
+    <!-- Project Logic Script -->
+    <script src="main.js"></script>
+</body>
+</html>
